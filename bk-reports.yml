@@ -1,5 +1,42 @@
 ---
 ReportDefinitions:
+- reportName: BookingsApplicationStatusReport
+  summary: Nummber of applications by there status
+  version: 1.0.0
+  moduleName: rainmaker-services
+  externalService:
+  - entity: $.messages[*]
+    apiURL: http://egov-localization:8080/localization/messages/v1/_search?locale=en_IN&tenantId=ch&module=rainmaker-services
+    keyOrder: code,message
+    tableName: tbl_localization
+  sourceColumns:
+  - name: status
+    label: report.bk.bk_application_status
+    type: string
+    source: bk
+    total: false
+  - name: total
+    label: report.bk.total
+    type: string
+    source: bk
+    total: true
+  searchParams:
+  - name: fromDate
+    label: reports.bk.bk_date_created
+    type: epoch
+    source: bk
+    isMandatory: false
+    searchClause: AND bk.bk_date_created >= $fromDate
+  - name: toDate
+    label: reports.bk.bk_date_created
+    type: epoch
+    source: bk
+    isMandatory: false
+    searchClause: AND bk.bk_date_created <= $toDate
+  query: select MAX(message) as status, count(bk.bk_application_status) as total from bk_bookings bk LEFT OUTER JOIN message ON message.code = concat('WF_NEWTL_', bk.bk_application_status) AND message.locale = 'en_IN' WHERE bk.tenantid LIKE $tenantid
+  groupby: GROUP BY bk.bk_application_status
+  orderby: ORDER BY case bk.bk_application_status when 'INITIATED' then 1 when 'MODIFIED' then 2 when 'PENDINGCLARIFICATION' then 3 when 'PENDINGL1VERIFICATION' then 4 when 'PENDINGL2VERIFICATION' then 5 when 'PENDINGL3VERIFICATION' then 6 when 'PENDINGPAYMENT' then 7 when 'PENDINGAPPROVAL' then 8 when 'APPROVED' then 9 when 'REJECTED' then 10 else 11 end
+
 - reportName: TradeLicenseRegistryReport
   summary: TL Receipt Register Report
   version: 1.0.0
