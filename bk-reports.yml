@@ -80,5 +80,5 @@ ReportDefinitions:
     LEFT OUTER JOIN egcl_bill bill ON bill.consumercode = bb.bk_application_number 
     LEFT OUTER JOIN egcl_paymentdetail as pd ON pd.billid = bill.id
     LEFT OUTER JOIN egcl_payment as payment ON pd.paymentid = payment.id
-    WHERE bb.bk_application_status IN ('APPROVED') 
+    WHERE bb.bk_action IN ('PAY','PAIDAPPLY','APPLY','OFFLINE_APPLY')
   groupby: GROUP BY msg.message
