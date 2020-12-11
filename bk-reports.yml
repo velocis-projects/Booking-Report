@@ -76,7 +76,7 @@ ReportDefinitions:
       msg.message as bookingName,
       SUM(payment.totalamountpaid) as total 
     FROM bk_bookings bb 
-    INNER JOIN  message msg ON  msg.code = bb.businessservice AND msg.locale = 'en_IN'
+    INNER JOIN  message msg ON  msg.code = bb.business_service AND msg.locale = 'en_IN'
     LEFT OUTER JOIN egcl_bill bill ON bill.consumercode = tl.applicationnumber 
     LEFT OUTER JOIN egcl_paymentdetail as pd ON pd.billid = bill.id
     LEFT OUTER JOIN egcl_payment as payment ON pd.paymentid = payment.id
