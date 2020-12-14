@@ -63,13 +63,13 @@ ReportDefinitions:
     type: epoch
     source: bb
     isMandatory: false
-    searchClause: AND bb.bk_date_created >= to_date($fromDate :: text, 'YYYYMMDD')
+    searchClause: AND bb.bk_date_created >= to_date(CAST($fromDate AS text), 'YYYYMMDD')
   - name: toDate
     label: reports.bb.bk_date_created
     type: epoch
     source: bb
     isMandatory: false
-    searchClause: AND bb.bk_date_created <= to_date($toDate :: text, 'YYYYMMDD')
+    searchClause: AND bb.bk_date_created <= to_date(CAST($toDate AS text), 'YYYYMMDD')
   query: |
     SELECT 
       COUNT(bill.consumercode) as applicationNumber,
