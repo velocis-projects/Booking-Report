@@ -63,13 +63,13 @@ ReportDefinitions:
     type: epoch
     source: bb
     isMandatory: false
-    searchClause: AND bb.bk_date_created >= $fromDate
+    searchClause: AND bb.bk_date_created >= to_char($fromDate, 'YYYYMMDD')
   - name: toDate
     label: reports.bb.bk_date_created
     type: epoch
     source: bb
     isMandatory: false
-    searchClause: AND bb.bk_date_created <= $toDate
+    searchClause: AND bb.bk_date_created <= to_char($toDate, 'YYYYMMDD')
   query: |
     SELECT 
       COUNT(bill.consumercode) as applicationNumber,
