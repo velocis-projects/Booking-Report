@@ -37,6 +37,7 @@ ReportDefinitions:
   groupby: GROUP BY bb.bk_application_status
   orderby: ORDER BY case bb.bk_application_status when 'INITIATED' then 1 when 'PENDINGASSIGNMENTDRIVER' then 2 when 'DELIVERED' then 3 when 'PENDINGUPDATE' then 4 when 'NOTDELIVERED' then 5 when 'APPLIED' then 6 when 'PENDINGPAYMENT' then 7 when 'PENDINGAPPROVAL' then 8 when 'APPROVED' then 9 when 'REJECTED' then 10 when 'OFFLINE_INITIATED' then 11 when 'OFFLINE_APPLIED' then 12 when 'RE_INITIATED' then 13 when 'PENDING_FOR_APPROVAL_CLEARK_DEO' then 14 when 'PENDING_FOR_APPROVAL_SENIOR_ASSISTANT' then 15 when 'PENDING_FOR_APPROVAL_AUDIT_DEPARTMENT' then 16 when 'PENDING_FOR_APPROVAL_CAO' then 17 when 'PENDING_FOR_DISBURSEMENT' then 18 when 'PAYMENT_DISBURSED' then 19 when 'PENDING_FOR_APPROVAL_SUPERVISOR' then 20 when 'PENDING_FOR_APPROVAL_OSD' then 21 when 'OFFLINE_RE_INITIATED' then 22 when 'OFFLINE_MODIFIED' then 23 else 24 end
 
+
 - reportName: BookingWiseCollectionReport
   summary: Collection according to BookingTypes
   version: 1.0.0
