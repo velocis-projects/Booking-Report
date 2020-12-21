@@ -146,21 +146,38 @@ ReportDefinitions:
     type: epoch
     source: bb
     isMandatory: false
-    searchClause: AND payment.createdtime  <= $toDate 
+    searchClause: AND payment.createdtime  <= $toDate
+  - name: bookingType
+    label: reports.bb.bk_booking_type
+    type: string
+    source: bb
+    isMandatory: false
+    searchClause: AND bb.bk_booking_type LIKE: $bookingType
+  - name: applicationStatus
+    label: reports.bb.bk_application_status
+    type: string
+    source: bb
+    isMandatory: false
+    searchClause: AND bb.bk_application_status LIKE: $applicationStatus
+  - name: locality
+    label: reports.bb.bk_sector
+    type: string
+    source: bb
+    isMandatory: false
+    searchClause: AND bb.bk_sector LIKE: $locality    
   query: |
     SELECT 
       licensenumber,
-      to_char(To_timestamp(bb.bk_date_created / 1000), 'DD/MM/YYYY') as bookingDate,
+      bb.bk_date_created as bookingDate,
       msg.message as bookingName,
       initcap(bb.bk_application_status) as status,
-      to_char(To_timestamp(bb.bk_date_created / 1000), 'DD/MM/YYYY') as receiptIssueDate , 
+      bb.bk_date_created as receiptIssueDate, 
       pd.receiptnumber,
       bb.bk_applicant_name,
       payment.transactionnumber as transactionumber,
       totalamountpaid
-    FROM bk_bookings bb 
-    INNER JOIN eg_tl_tradelicensedetail tld ON tld.tradelicenseid = tl.id 
-    INNER JOIN  message msg ON  msg.code = tl.businessservice AND msg.locale = 'en_IN'
+    FROM bk_bookings bb
+    INNER JOIN  message msg ON  msg.code = bb.business_service AND msg.locale = 'en_IN'
     LEFT OUTER JOIN egcl_bill bill ON bill.consumercode = bb.bk_application_number 
     LEFT OUTER JOIN egcl_paymentdetail as pd ON pd.billid = bill.id
     LEFT OUTER JOIN egcl_payment as payment ON pd.paymentid = payment.id
