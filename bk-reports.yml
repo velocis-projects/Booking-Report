@@ -64,13 +64,13 @@ ReportDefinitions:
     type: epoch
     source: bb
     isMandatory: false
-    searchClause: AND bb.bk_date_created >= to_date(to_char(to_timestamp($fromDate/1000)+ interval '5:30','YYYY-MM-DD'),'YYYY-MM-DD')
+    searchClause: AND payment.createdtime >= $fromDate
   - name: toDate
     label: reports.bb.bk_date_created
     type: epoch
     source: bb
     isMandatory: false
-    searchClause: AND bb.bk_date_created <= to_date(to_char(to_timestamp($toDate/1000)+ interval '5:30','YYYY-MM-DD'),'YYYY-MM-DD')
+    searchClause: AND payment.createdtime <= $toDate
   query: |
     SELECT 
       COUNT(bill.consumercode) as applicationNumber,
@@ -83,3 +83,85 @@ ReportDefinitions:
     LEFT OUTER JOIN egcl_payment as payment ON pd.paymentid = payment.id
     WHERE bb.bk_application_status IN ('APPROVED','PENDINGASSIGNMENTDRIVER','APPLIED','OFFLINE_APPLIED')
   groupby: GROUP BY msg.message
+  
+- reportName: AllBookingsTransactionReport
+  summary: Bookings Receipt Register Report
+  version: 1.0.0
+  moduleName: rainmaker-services
+  sourceColumns:
+  - name: receiptnumber
+    label: report.tl.receiptnumber
+    type: string
+    source: tl
+    total: false
+  - name: receiptIssueDate
+    label: report.tl.receiptissuedate
+    type: string
+    source: tl
+    total: false
+  - name: applicationNumber
+    label: report.bb.bk_application_number
+    type: string
+    source: bb
+    total: false
+  - name: bookingDate
+    label: report.bb.bk_dateCreated
+    type: string
+    source: bb
+    total: false
+  - name: applicantName
+    label: report.bb.bk_applicant_name
+    type: string
+    source: bb
+    total: false
+  - name: transactionumber
+    label: report.bb.transactionumber
+    type: string
+    source: bb
+    total: false
+  - name: status
+    label: report.bb.bk_application_status
+    type: string
+    source: bb
+    total: false
+  - name: bookingName
+    label: report.bb.bk_booking_type
+    type: string
+    source: bb
+    total: false
+  - name: totalamountpaid
+    label: report.bb.receipt.totalamount
+    type: string
+    source: bb
+    total: true
+  searchParams:
+  - name: fromDate
+    label: reports.bb.bk_date_created
+    type: epoch
+    source: bb
+    isMandatory: false
+    searchClause: AND payment.createdtime >= $fromDate
+  - name: toDate
+    label: reports.bb.bk_date_created
+    type: epoch
+    source: bb
+    isMandatory: false
+    searchClause: AND payment.createdtime  <= $toDate 
+  query: |
+    SELECT 
+      licensenumber,
+      to_char(To_timestamp(bb.bk_date_created / 1000), 'DD/MM/YYYY') as bookingDate,
+      msg.message as bookingName,
+      initcap(bb.bk_application_status) as status,
+      to_char(To_timestamp(bb.bk_date_created / 1000), 'DD/MM/YYYY') as receiptIssueDate , 
+      pd.receiptnumber,
+      bb.bk_applicant_name,
+      payment.transactionnumber as transactionumber,
+      totalamountpaid
+    FROM bk_bookings bb 
+    INNER JOIN eg_tl_tradelicensedetail tld ON tld.tradelicenseid = tl.id 
+    INNER JOIN  message msg ON  msg.code = tl.businessservice AND msg.locale = 'en_IN'
+    LEFT OUTER JOIN egcl_bill bill ON bill.consumercode = bb.bk_application_number 
+    LEFT OUTER JOIN egcl_paymentdetail as pd ON pd.billid = bill.id
+    LEFT OUTER JOIN egcl_payment as payment ON pd.paymentid = payment.id
+    WHERE bb.bk_application_status IN ('APPROVED','PENDINGASSIGNMENTDRIVER','APPLIED','OFFLINE_APPLIED')
