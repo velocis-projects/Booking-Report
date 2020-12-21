@@ -167,13 +167,13 @@ ReportDefinitions:
     searchClause: AND bb.bk_sector LIKE '%$locality%'
   query: |
     SELECT 
-      licensenumber,
+      bb.bk_application_number as applicationNumber,
       bb.bk_date_created as bookingDate,
       msg.message as bookingName,
       initcap(bb.bk_application_status) as status,
       bb.bk_date_created as receiptIssueDate, 
       pd.receiptnumber,
-      bb.bk_applicant_name,
+      bb.bk_applicant_name as applicantName,
       payment.transactionnumber as transactionumber,
       totalamountpaid
     FROM bk_bookings bb
