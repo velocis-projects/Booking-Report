@@ -152,19 +152,19 @@ ReportDefinitions:
     type: string
     source: bb
     isMandatory: false
-    searchClause: AND bb.bk_booking_type LIKE: $bookingType
+    searchClause: AND bb.bk_booking_type LIKE '%$bookingType%'
   - name: applicationStatus
     label: reports.bb.bk_application_status
     type: string
     source: bb
     isMandatory: false
-    searchClause: AND bb.bk_application_status LIKE: $applicationStatus
+    searchClause: AND bb.bk_application_status LIKE '%$applicationStatus%'
   - name: locality
     label: reports.bb.bk_sector
     type: string
     source: bb
     isMandatory: false
-    searchClause: AND bb.bk_sector LIKE: $locality    
+    searchClause: AND bb.bk_sector LIKE '%$locality%'
   query: |
     SELECT 
       licensenumber,
