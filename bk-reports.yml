@@ -171,7 +171,7 @@ ReportDefinitions:
       to_char(bb.bk_date_created, 'DD/MM/YYYY') as bookingDate,
       msg.message as bookingName,
       initcap(bb.bk_application_status) as status,
-      to_char(bb.bk_date_created, 'DD/MM/YYYY') as receiptIssueDate, 
+      to_char(To_timestamp(pd.receiptdate / 1000), 'DD/MM/YYYY') as receiptIssueDate, 
       pd.receiptnumber,
       bb.bk_applicant_name as applicantName,
       payment.transactionnumber as transactionumber,
