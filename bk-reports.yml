@@ -168,10 +168,10 @@ ReportDefinitions:
   query: |
     SELECT 
       bb.bk_application_number as applicationNumber,
-      bb.bk_date_created as bookingDate,
+      to_char(bb.bk_date_created, 'DD/MM/YYYY') as bookingDate,
       msg.message as bookingName,
       initcap(bb.bk_application_status) as status,
-      bb.bk_date_created as receiptIssueDate, 
+      to_char(bb.bk_date_created, 'DD/MM/YYYY') as receiptIssueDate, 
       pd.receiptnumber,
       bb.bk_applicant_name as applicantName,
       payment.transactionnumber as transactionumber,
