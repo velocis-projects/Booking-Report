@@ -158,7 +158,7 @@ ReportDefinitions:
     type: string
     source: bb
     isMandatory: false
-    searchClause: AND bb.bk_application_status LIKE $applicationStatus%
+    searchClause: AND bb.bk_application_status LIKE $applicationStatus
   - name: locality
     label: reports.bb.bk_sector
     type: string
