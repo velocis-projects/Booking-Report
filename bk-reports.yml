@@ -150,7 +150,7 @@ ReportDefinitions:
   - name: bookingType
     label: reports.bb.bk_booking_type
     type: singlevaluelist
-    pattern: http://127.0.0.1:8094/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=BookingType
+    pattern: http://3.6.65.87:8080/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=BookingType|$.MdmsRes.Booking.BookingType.*.code|$.MdmsRes.Booking.BookingType.*.name
     source: bb
     wrapper: true
     isMandatory: false
@@ -158,7 +158,7 @@ ReportDefinitions:
   - name: applicationStatus
     label: reports.bb.bk_application_status
     type: singlevaluelist
-    pattern: http://127.0.0.1:8094/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=BookingStatus
+    pattern: http://3.6.65.87:8080/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=BookingStatus|$.MdmsRes.Booking.BookingStatus.*.code|$.MdmsRes.Booking.BookingStatus.*.name
     source: bb
     wrapper: true
     isMandatory: false
@@ -166,7 +166,7 @@ ReportDefinitions:
   - name: locality
     label: reports.bb.bk_sector
     type: singlevaluelist
-    pattern: http://127.0.0.1:8094/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=Sector
+    pattern: http://3.6.65.87:8080/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=Sector|$.MdmsRes.Booking.Sector.*.code|$.MdmsRes.Booking.Sector.*.name
     source: bb
     wrapper: true
     isMandatory: false
