@@ -90,14 +90,14 @@ ReportDefinitions:
   moduleName: rainmaker-services
   sourceColumns:
   - name: receiptnumber
-    label: report.tl.receiptnumber
+    label: report.bb.receiptnumber
     type: string
-    source: tl
+    source: bb
     total: false
   - name: receiptIssueDate
-    label: report.tl.receiptissuedate
+    label: report.bb.receiptissuedate
     type: string
-    source: tl
+    source: bb
     total: false
   - name: applicationNumber
     label: report.bb.bk_application_number
@@ -149,20 +149,26 @@ ReportDefinitions:
     searchClause: AND payment.createdtime  <= $toDate
   - name: bookingType
     label: reports.bb.bk_booking_type
-    type: string
+    type: singlevaluelist
+    pattern: http://3.6.65.87:8080/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=BookingType
     source: bb
+    wrapper: true
     isMandatory: false
     searchClause: AND bb.bk_booking_type LIKE $bookingType
   - name: applicationStatus
     label: reports.bb.bk_application_status
-    type: string
+    type: singlevaluelist
+    pattern: http://3.6.65.87:8080/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=BookingStatus
     source: bb
+    wrapper: true
     isMandatory: false
     searchClause: AND bb.bk_application_status LIKE $applicationStatus
   - name: locality
     label: reports.bb.bk_sector
-    type: string
+    type: singlevaluelist
+    pattern: http://3.6.65.87:8080/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=Sector
     source: bb
+    wrapper: true
     isMandatory: false
     searchClause: AND bb.bk_sector LIKE $locality
   query: |
