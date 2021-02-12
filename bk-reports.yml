@@ -81,7 +81,7 @@ ReportDefinitions:
     LEFT OUTER JOIN egcl_bill bill ON bill.consumercode = bb.bk_application_number 
     LEFT OUTER JOIN egcl_paymentdetail as pd ON pd.billid = bill.id
     LEFT OUTER JOIN egcl_payment as payment ON pd.paymentid = payment.id
-    WHERE bb.bk_application_status IN ('APPROVED','PENDINGASSIGNMENTDRIVER','APPLIED','OFFLINE_APPLIED')
+    WHERE bb.bk_application_status IN ('APPROVED','PENDINGASSIGNMENTDRIVER',,'PENDINGUPDATE','REJECTED','NOTDELIVERED','APPLIED','OFFLINE_APPLIED')
   groupby: GROUP BY msg.message
   
 - reportName: AllBookingsTransactionReport
@@ -149,7 +149,7 @@ ReportDefinitions:
     searchClause: AND payment.createdtime  <= $toDate
   - name: bookingType
     label: reports.bb.bk_booking_type
-    type: singlevaluelist
+    type: bookingDropDown
     pattern: http://3.6.65.87:8094/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=BookingType|$.MdmsRes.Booking.BookingType.*.code|$.MdmsRes.Booking.BookingType.*.name
     source: bb 
     wrapper: true
@@ -157,7 +157,7 @@ ReportDefinitions:
     searchClause: AND bb.bk_booking_type LIKE $bookingType
   - name: applicationStatus
     label: reports.bb.bk_application_status
-    type: singlevaluelist
+    type: bookingDropDown
     pattern: http://3.6.65.87:8094/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=BookingStatus|$.MdmsRes.Booking.BookingStatus.*.code|$.MdmsRes.Booking.BookingStatus.*.name
     source: bb
     wrapper: true
@@ -165,7 +165,7 @@ ReportDefinitions:
     searchClause: AND bb.bk_application_status LIKE $applicationStatus
   - name: locality
     label: reports.bb.bk_sector
-    type: singlevaluelist
+    type: bookingDropDown
     pattern: http://3.6.65.87:8094/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=Sector|$.MdmsRes.Booking.Sector.*.code|$.MdmsRes.Booking.Sector.*.name
     source: bb
     wrapper: true
@@ -187,4 +187,4 @@ ReportDefinitions:
     LEFT OUTER JOIN egcl_bill bill ON bill.consumercode = bb.bk_application_number 
     LEFT OUTER JOIN egcl_paymentdetail as pd ON pd.billid = bill.id
     LEFT OUTER JOIN egcl_payment as payment ON pd.paymentid = payment.id
-    WHERE bb.bk_application_status IN ('APPROVED','PENDINGASSIGNMENTDRIVER','APPLIED','OFFLINE_APPLIED')
+    WHERE bb.bk_application_status IN ('APPROVED','PENDINGASSIGNMENTDRIVER','PENDINGUPDATE','REJECTED','NOTDELIVERED','APPLIED','OFFLINE_APPLIED')
