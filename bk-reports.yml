@@ -183,7 +183,7 @@ ReportDefinitions:
       payment.transactionnumber as transactionumber,
       totalamountpaid
     FROM bk_bookings bb
-    INNER JOIN  message msg ON  msg.code = bb.business_service AND msg.locale = 'en_IN' AND message.code = concat('RPT_BK_WF_', bb.bk_application_status)
+    INNER JOIN  message msg ON  msg.code = bb.business_service AND msg.locale = 'en_IN' AND msg.code = concat('RPT_BK_WF_', bb.bk_application_status)
     LEFT OUTER JOIN egcl_bill bill ON bill.consumercode = bb.bk_application_number 
     LEFT OUTER JOIN egcl_paymentdetail as pd ON pd.billid = bill.id
     LEFT OUTER JOIN egcl_payment as payment ON pd.paymentid = payment.id
