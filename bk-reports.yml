@@ -173,7 +173,7 @@ ReportDefinitions:
     wrapper: true
     isMandatory: false
     searchClause: AND bb.bk_sector LIKE $locality
-  query:
+  query: |
     SELECT 
       bb.bk_application_number as applicationNumber,
       to_char(bb.bk_date_created, 'DD/MM/YYYY') as bookingDate,
