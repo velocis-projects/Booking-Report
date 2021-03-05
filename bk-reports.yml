@@ -276,22 +276,22 @@ ReportDefinitions:
     wrapper: true
     isMandatory: false
     searchClause: AND CASE WHEN ($bookingType IS NOT NULL AND $bookingType = 'Parks and Community Center') THEN (bb.bk_booking_type = 'Parks' OR bb.bk_booking_type = 'Community Center') WHEN ($bookingType IS NOT NULL AND $bookingType != 'Parks and Community Center') THEN bb.bk_booking_type LIKE $bookingType END
-  - name: venueName
+  - name: gfcpVnueName
     label: reports.bb.bk_venue_name
     type: singlevaluelist
     pattern: http://3.6.65.87:8094/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=Booking_Vanue|$.MdmsRes.Booking.Booking_Vanue.*.code|$.MdmsRes.Booking.Booking_Vanue.*.name
     source: bb
     wrapper: true
     isMandatory: false
-    searchClause: AND bb.bk_application_status LIKE $venueName
-  - name: venueName
+    searchClause: AND bb.bk_application_status LIKE $gfcpVnueName
+  - name: parksVenueName
     label: reports.bb.bk_venue_name
     type: singlevaluelist
     pattern: http://3.6.65.87:8094/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=BookingStatus|$.MdmsRes.Booking.BookingStatus.*.code|$.MdmsRes.Booking.BookingStatus.*.name
     source: bb
     wrapper: true
     isMandatory: false
-    searchClause: AND bb.bk_application_status LIKE $venueName
+    searchClause: AND bb.bk_application_status LIKE $parksVenueName
   - name: locality
     label: reports.bb.bk_sector
     type: singlevaluelist
