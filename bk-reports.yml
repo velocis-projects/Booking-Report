@@ -666,99 +666,99 @@ ReportDefinitions:
   moduleName: rainmaker-services
   sourceColumns:
   - name: bookingVenueType
-    label: report.bb.bk_booking_type
+    label: report.bcgal.booking_type
     type: string
-    source: bb
+    source: bcgal
     total: false
   - name: bookingStartDate
-    label: report.bb.bk_from_Date
+    label: report.bcgal.from_Date
     type: string
-    source: bb
+    source: bcgal
     total: false
   - name: bookingEndDate
-    label: report.bb.bk_to_date
+    label: report.bcgal.to_date
     type: string
-    source: bb
+    source: bcgal
     total: false
   - name: sector
-    label: report.bb.bk_sector
+    label: report.bcgal.sector
     type: string
-    source: bb
+    source: bcgal
     total: false
   - name: venueName
-    label: report.bb.venueName
+    label: report.bcgal.venueName
     type: string
-    source: bb
+    source: bcgal
     total: false
   - name: blockingDate
-    label: report.bb.blockingDate
+    label: report.bcgal.blockingDate
     type: string
-    source: bb
+    source: bcgal
     total: false
   - name: reasonOfBlockingBooking
-    label: report.bb.reasonOfBlockingBooking
+    label: report.bcgal.reasonOfBlockingBooking
     type: string
-    source: bb
+    source: bcgal
     total: false
   searchParams:
   - name: fromDate
-    label: reports.bb.created_date
+    label: reports.bcgal.created_date
     type: epoch
-    source: bb
+    source: bcgal
     isMandatory: false
-    searchClause: AND created_date >= to_date(to_char(to_timestamp($fromDate/1000)+ interval '5:30','YYYY-MM-DD'),'YYYY-MM-DD')
+    searchClause: AND bcgal.created_date >= to_date(to_char(to_timestamp($fromDate/1000)+ interval '5:30','YYYY-MM-DD'),'YYYY-MM-DD')
   - name: toDate
-    label: reports.bb.created_date
+    label: reports.bcgal.created_date
     type: epoch
-    source: bb
+    source: bcgal
     isMandatory: false
-    searchClause: AND created_date >= to_date(to_char(to_timestamp($toDate/1000)+ interval '5:30','YYYY-MM-DD'),'YYYY-MM-DD')
+    searchClause: AND bcgal.created_date >= to_date(to_char(to_timestamp($toDate/1000)+ interval '5:30','YYYY-MM-DD'),'YYYY-MM-DD')
   - name: bookingType
     label: reports.bb.bk_booking_type
     type: singlevaluelist
     pattern: http://3.6.65.87:8094/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=BookingModuleType|$.MdmsRes.Booking.BookingModuleType.*.code|$.MdmsRes.Booking.BookingModuleType.*.name
-    source: bb 
+    source: bcgal 
     wrapper: true
     isMandatory: false
-    searchClause: AND venue_type = $bookingType
+    searchClause: AND bcgal.venue_type = $bookingType
   - name: gfcpVnueName
-    label: reports.bb.bk_gfcp_venue_name
+    label: reports.bcgal.gfcp_venue_name
     type: singlevaluelist
     pattern: http://3.6.65.87:8094/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=Booking_Vanue|$.MdmsRes.Booking.Booking_Vanue.*.code|$.MdmsRes.Booking.Booking_Vanue.*.name
-    source: bb
+    source: bcgal
     wrapper: true
     isMandatory: false
-    searchClause: AND booking_venue LIKE $gfcpVnueName
+    searchClause: AND bcgal.booking_venue LIKE $gfcpVnueName
   - name: parksVenueName
-    label: reports.bb.bk_parks_venue_name
+    label: reports.bcgal.parks_venue_name
     type: singlevaluelist
     pattern: http://3.6.65.87:8022/bookings/master/report/park/venue/type/_fetch|$.data.*.id|$.data.*.name
-    source: bb
+    source: bcgal
     wrapper: true
     isMandatory: false
-    searchClause: AND booking_venue LIKE $parksVenueName
+    searchClause: AND bcgal.booking_venue LIKE $parksVenueName
   - name: communityCenterVenueName
-    label: reports.bb.bk_community_center_venue_name
+    label: reports.bcgal.community_center_venue_name
     type: singlevaluelist
     pattern: http://3.6.65.87:8022/bookings/master/report/communitycenter/venue/type/_fetch|$.data.*.id|$.data.*.name
-    source: bb
+    source: bcgal
     wrapper: true
     isMandatory: false
-    searchClause: AND booking_venue LIKE $communityCenterVenueName
+    searchClause: AND bcgal.booking_venue LIKE $communityCenterVenueName
   - name: locality
-    label: reports.bb.bk_sector
+    label: reports.bcgal.sector
     type: singlevaluelist
     pattern: http://3.6.65.87:8094/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=Sector|$.MdmsRes.Booking.Sector.*.code|$.MdmsRes.Booking.Sector.*.name
-    source: bb
+    source: bcgal
     wrapper: true
     isMandatory: false
-    searchClause: AND sector LIKE $locality
+    searchClause: AND bcgal.sector LIKE $locality
   query: |
     SELECT
-      venue_type as bookingVenueType,
-      to_char(bb.from_date, 'DD/MM/YYYY') as bookingStartDate,
-      to_char(bb.to_date, 'DD/MM/YYYY') as bookingEndDate,
-      booking_venue as venueName,
-      created_date as blockingDate
-    FROM bk_commercial_ground_availability_lock 
-    WHERE booking_venue IS NOT NULL 
+      bcgal.venue_type as bookingVenueType,
+      to_char(bcgal.from_date, 'DD/MM/YYYY') as bookingStartDate,
+      to_char(bcgal.to_date, 'DD/MM/YYYY') as bookingEndDate,
+      bcgal.booking_venue as venueName,
+      bcgal.created_date as blockingDate
+    FROM bk_commercial_ground_availability_lock bcgal
+    WHERE bcgal.booking_venue IS NOT NULL 
