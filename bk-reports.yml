@@ -706,13 +706,13 @@ ReportDefinitions:
     type: epoch
     source: bb
     isMandatory: false
-    searchClause: AND bb.created_date >= to_date(to_char(to_timestamp($fromDate/1000)+ interval '5:30','YYYY-MM-DD'),'YYYY-MM-DD')
+    searchClause: AND created_date >= to_date(to_char(to_timestamp($fromDate/1000)+ interval '5:30','YYYY-MM-DD'),'YYYY-MM-DD')
   - name: toDate
     label: reports.bb.created_date
     type: epoch
     source: bb
     isMandatory: false
-    searchClause: AND bb.created_date >= to_date(to_char(to_timestamp($toDate/1000)+ interval '5:30','YYYY-MM-DD'),'YYYY-MM-DD')
+    searchClause: AND created_date >= to_date(to_char(to_timestamp($toDate/1000)+ interval '5:30','YYYY-MM-DD'),'YYYY-MM-DD')
   - name: bookingType
     label: reports.bb.bk_booking_type
     type: singlevaluelist
@@ -720,7 +720,7 @@ ReportDefinitions:
     source: bb 
     wrapper: true
     isMandatory: false
-    searchClause: AND bb.bk_booking_type = $bookingType
+    searchClause: AND venue_type = $bookingType
   - name: gfcpVnueName
     label: reports.bb.bk_gfcp_venue_name
     type: singlevaluelist
@@ -728,7 +728,7 @@ ReportDefinitions:
     source: bb
     wrapper: true
     isMandatory: false
-    searchClause: AND bb.bk_booking_venue LIKE $gfcpVnueName
+    searchClause: AND booking_venue LIKE $gfcpVnueName
   - name: parksVenueName
     label: reports.bb.bk_parks_venue_name
     type: singlevaluelist
@@ -736,7 +736,7 @@ ReportDefinitions:
     source: bb
     wrapper: true
     isMandatory: false
-    searchClause: AND bb.bk_booking_venue LIKE $parksVenueName
+    searchClause: AND booking_venue LIKE $parksVenueName
   - name: communityCenterVenueName
     label: reports.bb.bk_community_center_venue_name
     type: singlevaluelist
@@ -744,7 +744,7 @@ ReportDefinitions:
     source: bb
     wrapper: true
     isMandatory: false
-    searchClause: AND bb.bk_booking_venue LIKE $communityCenterVenueName
+    searchClause: AND booking_venue LIKE $communityCenterVenueName
   - name: locality
     label: reports.bb.bk_sector
     type: singlevaluelist
@@ -752,23 +752,13 @@ ReportDefinitions:
     source: bb
     wrapper: true
     isMandatory: false
-    searchClause: AND bb.bk_sector LIKE $locality
+    searchClause: AND sector LIKE $locality
   query: |
     SELECT
-      msg.message as bookingVenueType,
-      to_char(bb.bk_from_date, 'DD/MM/YYYY') as bookingStartDate,
-      to_char(bb.bk_to_date, 'DD/MM/YYYY') as bookingEndDate,
-      bb.bk_sector as sector,
-      bb.bk_application_number as applicationNumber,
-      booking_status(concat('RPT_BK_WF_', bb.bk_application_status)) as status,
-      bb.bk_applicant_name as applicantName,
-      payment.transactionnumber as transactionumber,
-      payment.totalamountpaid as bookingAmount
-    FROM bk_bookings bb
-    INNER JOIN  message msg ON  msg.code = bb.business_service AND msg.locale = 'en_IN'
-    LEFT OUTER JOIN egcl_bill bill ON bill.consumercode = bb.bk_application_number 
-    LEFT OUTER JOIN egcl_paymentdetail as pd ON pd.billid = bill.id
-    LEFT OUTER JOIN egcl_payment as payment ON pd.paymentid = payment.id
-    INNER JOIN eg_user as eu on eu.uuid = bb.uuid
-    INNER JOIN eg_userrole_v1 as euv on euv.user_id = eu.id
-    WHERE bb.bk_application_number IS NOT NULL 
+      venue_type as bookingVenueType,
+      to_char(bb.from_date, 'DD/MM/YYYY') as bookingStartDate,
+      to_char(bb.to_date, 'DD/MM/YYYY') as bookingEndDate,
+      booking_venue as venueName,
+      created_date as blockingDate
+    FROM bk_commercial_ground_availability_lock 
+    WHERE booking_venue IS NOT NULL 
