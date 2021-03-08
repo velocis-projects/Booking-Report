@@ -271,7 +271,7 @@ ReportDefinitions:
   - name: bookingType
     label: reports.bb.bk_booking_type
     type: singlevaluelist
-    pattern: http://127.0.0.1:8094/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=BookingModuleType|$.MdmsRes.Booking.BookingModuleType.*.code|$.MdmsRes.Booking.BookingModuleType.*.name
+    pattern: http://3.6.65.87:8094/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=BookingModuleType|$.MdmsRes.Booking.BookingModuleType.*.code|$.MdmsRes.Booking.BookingModuleType.*.name
     source: bb 
     wrapper: true
     isMandatory: false
@@ -279,7 +279,7 @@ ReportDefinitions:
   - name: gfcpVnueName
     label: reports.bb.bk_gfcp_venue_name
     type: singlevaluelist
-    pattern: http://127.0.0.1:8094/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=Booking_Vanue|$.MdmsRes.Booking.Booking_Vanue.*.code|$.MdmsRes.Booking.Booking_Vanue.*.name
+    pattern: http://3.6.65.87:8094/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=Booking_Vanue|$.MdmsRes.Booking.Booking_Vanue.*.code|$.MdmsRes.Booking.Booking_Vanue.*.name
     source: bb
     wrapper: true
     isMandatory: false
@@ -287,7 +287,7 @@ ReportDefinitions:
   - name: parksVenueName
     label: reports.bb.bk_parks_venue_name
     type: singlevaluelist
-    pattern: http://127.0.0.1:8022/bookings/master/report/park/venue/type/_fetch|$.data.*.id|$.data.*.name
+    pattern: http://3.6.65.87:8022/bookings/master/report/park/venue/type/_fetch|$.data.*.id|$.data.*.name
     source: bb
     wrapper: true
     isMandatory: false
@@ -295,7 +295,7 @@ ReportDefinitions:
   - name: communityCenterVenueName
     label: reports.bb.bk_community_center_venue_name
     type: singlevaluelist
-    pattern: http://127.0.0.1:8022/bookings/master/report/communityCenter/venue/type/_fetch|$.data.*.id|$.data.*.name
+    pattern: http://3.6.65.87:8022/bookings/master/report/communitycenter/venue/type/_fetch|$.data.*.id|$.data.*.name
     source: bb
     wrapper: true
     isMandatory: false
@@ -311,7 +311,7 @@ ReportDefinitions:
   - name: bookingMadeThrough
     label: reports.bb.bk_booking_made_through
     type: singlevaluelist
-    pattern: http://127.0.0.1:8094/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=BookingMadeThrough|$.MdmsRes.Booking.BookingMadeThrough.*.code|$.MdmsRes.Booking.BookingMadeThrough.*.name
+    pattern: http://3.6.65.87:8094/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=BookingMadeThrough|$.MdmsRes.Booking.BookingMadeThrough.*.code|$.MdmsRes.Booking.BookingMadeThrough.*.name
     source: bb
     wrapper: true
     isMandatory: false
@@ -434,7 +434,7 @@ ReportDefinitions:
   - name: bookingType
     label: reports.bb.bk_booking_type
     type: singlevaluelist
-    pattern: http://127.0.0.1:8094/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=BookingModuleType|$.MdmsRes.Booking.BookingModuleType.*.code|$.MdmsRes.Booking.BookingModuleType.*.name
+    pattern: http://3.6.65.87:8094/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=BookingModuleType|$.MdmsRes.Booking.BookingModuleType.*.code|$.MdmsRes.Booking.BookingModuleType.*.name
     source: bb 
     wrapper: true
     isMandatory: false
@@ -450,7 +450,7 @@ ReportDefinitions:
   - name: parksVenueName
     label: reports.bb.bk_parks_venue_name
     type: singlevaluelist
-    pattern: http://127.0.0.1:8022/bookings/master/report/park/venue/type/_fetch|$.data.*.id|$.data.*.name
+    pattern: http://3.6.65.87:8022/bookings/master/report/park/venue/type/_fetch|$.data.*.id|$.data.*.name
     source: bb
     wrapper: true
     isMandatory: false
@@ -458,7 +458,7 @@ ReportDefinitions:
   - name: communityCenterVenueName
     label: reports.bb.bk_community_center_venue_name
     type: singlevaluelist
-    pattern: http://127.0.0.1:8022/bookings/master/report/communityCenter/venue/type/_fetch|$.data.*.id|$.data.*.name
+    pattern: http://3.6.65.87:8022/bookings/master/report/communitycenter/venue/type/_fetch|$.data.*.id|$.data.*.name
     source: bb
     wrapper: true
     isMandatory: false
@@ -474,7 +474,7 @@ ReportDefinitions:
   - name: bookingMadeThrough
     label: reports.bb.bk_booking_made_through
     type: singlevaluelist
-    pattern: http://127.0.0.1:8094/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=BookingMadeThrough|$.MdmsRes.Booking.BookingMadeThrough.*.code|$.MdmsRes.Booking.BookingMadeThrough.*.name
+    pattern: http://3.6.65.87:8094/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=BookingMadeThrough|$.MdmsRes.Booking.BookingMadeThrough.*.code|$.MdmsRes.Booking.BookingMadeThrough.*.name
     source: bb
     wrapper: true
     isMandatory: false
@@ -595,7 +595,7 @@ ReportDefinitions:
   - name: bookingType
     label: reports.bb.bk_booking_type
     type: singlevaluelist
-    pattern: http://127.0.0.1:8094/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=BookingModuleType|$.MdmsRes.Booking.BookingModuleType.*.code|$.MdmsRes.Booking.BookingModuleType.*.name
+    pattern: http://3.6.65.87:8094/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=BookingModuleType|$.MdmsRes.Booking.BookingModuleType.*.code|$.MdmsRes.Booking.BookingModuleType.*.name
     source: bb 
     wrapper: true
     isMandatory: false
@@ -611,7 +611,7 @@ ReportDefinitions:
   - name: parksVenueName
     label: reports.bb.bk_parks_venue_name
     type: singlevaluelist
-    pattern: http://127.0.0.1:8022/bookings/master/report/park/venue/type/_fetch|$.data.*.id|$.data.*.name
+    pattern: http://3.6.65.87:8022/bookings/master/report/park/venue/type/_fetch|$.data.*.id|$.data.*.name
     source: bb
     wrapper: true
     isMandatory: false
@@ -619,7 +619,7 @@ ReportDefinitions:
   - name: communityCenterVenueName
     label: reports.bb.bk_community_center_venue_name
     type: singlevaluelist
-    pattern: http://127.0.0.1:8022/bookings/master/report/communityCenter/venue/type/_fetch|$.data.*.id|$.data.*.name
+    pattern: http://3.6.65.87:8022/bookings/master/report/communitycenter/venue/type/_fetch|$.data.*.id|$.data.*.name
     source: bb
     wrapper: true
     isMandatory: false
@@ -635,7 +635,7 @@ ReportDefinitions:
   - name: bookingMadeThrough
     label: reports.bb.bk_booking_made_through
     type: singlevaluelist
-    pattern: http://127.0.0.1:8094/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=BookingMadeThrough|$.MdmsRes.Booking.BookingMadeThrough.*.code|$.MdmsRes.Booking.BookingMadeThrough.*.name
+    pattern: http://3.6.65.87:8094/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=BookingMadeThrough|$.MdmsRes.Booking.BookingMadeThrough.*.code|$.MdmsRes.Booking.BookingMadeThrough.*.name
     source: bb
     wrapper: true
     isMandatory: false
@@ -653,9 +653,9 @@ ReportDefinitions:
       payment.totalamountpaid as bookingAmount
     FROM bk_bookings bb
     INNER JOIN  message msg ON  msg.code = bb.business_service AND msg.locale = 'en_IN'
-    INNER JOIN JOIN egcl_bill bill ON bill.consumercode = bb.bk_application_number 
-    INNER JOIN JOIN egcl_paymentdetail as pd ON pd.billid = bill.id
-    INNER JOIN JOIN egcl_payment as payment ON pd.paymentid = payment.id
+    LEFT OUTER JOIN egcl_bill bill ON bill.consumercode = bb.bk_application_number 
+    LEFT OUTER JOIN egcl_paymentdetail as pd ON pd.billid = bill.id
+    LEFT OUTER JOIN egcl_payment as payment ON pd.paymentid = payment.id
     INNER JOIN eg_user as eu on eu.uuid = bb.uuid
     INNER JOIN eg_userrole_v1 as euv on euv.user_id = eu.id
     WHERE bb.bk_application_number IS NOT NULL 
@@ -716,7 +716,7 @@ ReportDefinitions:
   - name: bookingType
     label: reports.bb.bk_booking_type
     type: singlevaluelist
-    pattern: http://127.0.0.1:8094/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=BookingModuleType|$.MdmsRes.Booking.BookingModuleType.*.code|$.MdmsRes.Booking.BookingModuleType.*.name
+    pattern: http://3.6.65.87:8094/egov-mdms-service/v1/_get?tenantId=ch&moduleName=Booking&masterName=BookingModuleType|$.MdmsRes.Booking.BookingModuleType.*.code|$.MdmsRes.Booking.BookingModuleType.*.name
     source: bb 
     wrapper: true
     isMandatory: false
@@ -732,7 +732,7 @@ ReportDefinitions:
   - name: parksVenueName
     label: reports.bb.bk_parks_venue_name
     type: singlevaluelist
-    pattern: http://127.0.0.1:8022/bookings/master/report/park/venue/type/_fetch|$.data.*.id|$.data.*.name
+    pattern: http://3.6.65.87:8022/bookings/master/report/park/venue/type/_fetch|$.data.*.id|$.data.*.name
     source: bb
     wrapper: true
     isMandatory: false
@@ -740,7 +740,7 @@ ReportDefinitions:
   - name: communityCenterVenueName
     label: reports.bb.bk_community_center_venue_name
     type: singlevaluelist
-    pattern: http://127.0.0.1:8022/bookings/master/report/communityCenter/venue/type/_fetch|$.data.*.id|$.data.*.name
+    pattern: http://3.6.65.87:8022/bookings/master/report/communitycenter/venue/type/_fetch|$.data.*.id|$.data.*.name
     source: bb
     wrapper: true
     isMandatory: false
@@ -766,9 +766,9 @@ ReportDefinitions:
       payment.totalamountpaid as bookingAmount
     FROM bk_bookings bb
     INNER JOIN  message msg ON  msg.code = bb.business_service AND msg.locale = 'en_IN'
-    INNER JOIN JOIN egcl_bill bill ON bill.consumercode = bb.bk_application_number 
-    INNER JOIN JOIN egcl_paymentdetail as pd ON pd.billid = bill.id
-    INNER JOIN JOIN egcl_payment as payment ON pd.paymentid = payment.id
+    LEFT OUTER JOIN egcl_bill bill ON bill.consumercode = bb.bk_application_number 
+    LEFT OUTER JOIN egcl_paymentdetail as pd ON pd.billid = bill.id
+    LEFT OUTER JOIN egcl_payment as payment ON pd.paymentid = payment.id
     INNER JOIN eg_user as eu on eu.uuid = bb.uuid
     INNER JOIN eg_userrole_v1 as euv on euv.user_id = eu.id
     WHERE bb.bk_application_number IS NOT NULL 
