@@ -504,7 +504,7 @@ ReportDefinitions:
     INNER JOIN eg_userrole_v1 as euv on euv.user_id = eu.id
     WHERE bb.bk_application_number IS NOT NULL 
     
-- reportName: paymentReport
+- reportName: PaymentReport
   summary: Payment Report
   version: 1.0.0
   moduleName: rainmaker-services
@@ -660,7 +660,7 @@ ReportDefinitions:
     INNER JOIN eg_userrole_v1 as euv on euv.user_id = eu.id
     WHERE bb.bk_application_number IS NOT NULL 
     
-- reportName: blockingVenueReport
+- reportName: BlockingVenueReport
   summary: Report on Blocking of Venue 
   version: 1.0.0
   moduleName: rainmaker-services
