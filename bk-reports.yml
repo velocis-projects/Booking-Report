@@ -758,7 +758,9 @@ ReportDefinitions:
       bcgal.venue_type as bookingVenueType,
       to_char(bcgal.from_date, 'DD/MM/YYYY') as bookingStartDate,
       to_char(bcgal.to_date, 'DD/MM/YYYY') as bookingEndDate,
+      bcgal.sector,
       bcgal.booking_venue as venueName,
-      bcgal.created_date as blockingDate
+      bcgal.created_date as blockingDate,
+      bcgal.reason_for_hold as reasonOfBlockingBooking
     FROM bk_commercial_ground_availability_lock bcgal
     WHERE bcgal.booking_venue IS NOT NULL 
