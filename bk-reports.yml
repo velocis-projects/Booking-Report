@@ -22,13 +22,13 @@ ReportDefinitions:
     total: true
   searchParams:
   - name: fromDate
-    label: reports.bb.bk_date_created
+    label: reports.bb.bk_from_date
     type: epoch
     source: bb
     isMandatory: false
     searchClause: WHERE bb.bk_date_created >= to_date(to_char(to_timestamp($fromDate/1000)+ interval '5:30','YYYY-MM-DD'),'YYYY-MM-DD')
   - name: toDate
-    label: reports.bb.bk_date_created
+    label: reports.bb.bk_to_date
     type: epoch
     source: bb
     isMandatory: false
@@ -60,13 +60,13 @@ ReportDefinitions:
     total: true
   searchParams:
   - name: fromDate
-    label: reports.bb.bk_date_created
+    label: reports.bb.bk_from_date
     type: epoch
     source: bb
     isMandatory: false
     searchClause: AND payment.createdtime >= $fromDate
   - name: toDate
-    label: reports.bb.bk_date_created
+    label: reports.bb.bk_to_date
     type: epoch
     source: bb
     isMandatory: false
@@ -138,13 +138,13 @@ ReportDefinitions:
     total: true
   searchParams:
   - name: fromDate
-    label: reports.bb.bk_date_created
+    label: reports.bb.bk_from_date
     type: epoch
     source: bb
     isMandatory: false
     searchClause: AND payment.createdtime >= $fromDate
   - name: toDate
-    label: reports.bb.bk_date_created
+    label: reports.bb.bk_to_date
     type: epoch
     source: bb
     isMandatory: false
@@ -257,13 +257,13 @@ ReportDefinitions:
     isMandatory: false
     searchClause: AND bb.bk_application_number >= $applicationNumber
   - name: fromDate
-    label: reports.bb.bk_date_created
+    label: reports.bb.bk_from_date
     type: epoch
     source: bb
     isMandatory: false
     searchClause: AND bb.bk_date_created >= to_date(to_char(to_timestamp($fromDate/1000)+ interval '5:30','YYYY-MM-DD'),'YYYY-MM-DD')
   - name: toDate
-    label: reports.bb.bk_date_created
+    label: reports.bb.bk_to_date
     type: epoch
     source: bb
     isMandatory: false
@@ -411,7 +411,97 @@ ReportDefinitions:
     label: report.bb.bk_customer_gst_no
     type: string
     source: bb
-    total: false     
+    total: false
+  - name: refundable_security_money
+    label: report.bb.refundable_security_money
+    type: string
+    source: bb
+    total: false
+  - name: bk_nominee_name
+    label: report.bb.bk_nominee_name
+    type: string
+    source: bb
+    total: false
+  - name: discount
+    label: report.bb.discount
+    type: string
+    source: bb
+    total: false
+  - name: bk_ifsc_code
+    label: report.bb.bk_ifsc_code
+    type: string
+    source: bb
+    total: false
+  - name: bk_bank_name
+    label: report.bb.bk_bank_name
+    type: string
+    source: bb
+    total: false
+  - name: bk_bank_account_number
+    label: report.bb.bk_bank_account_number
+    type: string
+    source: bb
+    total: false
+  - name: bk_bank_account_holder
+    label: report.bb.bk_bank_account_holder
+    type: string
+    source: bb
+    total: false
+  - name: bk_account_type
+    label: report.bb.bk_account_type
+    type: string
+    source: bb
+    total: false
+  - name: ugst
+    label: report.bb.ugst
+    type: string
+    source: bb
+    total: false
+  - name: bk_surcharge_rent
+    label: report.bb.bk_surcharge_rent
+    type: string
+    source: bb
+    total: false
+  - name: bk_residential_or_commercial
+    label: report.bb.bk_residential_or_commercial
+    type: string
+    source: bb
+    total: false
+  - name: bk_remarks
+    label: report.bb.bk_remarks
+    type: string
+    source: bb
+    total: false
+  - name: bk_payment_status
+    label: report.bb.bk_payment_status
+    type: string
+    source: bb
+    total: false
+  - name: bk_mobile_number
+    label: report.bb.bk_mobile_number
+    type: string
+    source: bb
+    total: false
+  - name: bk_house_no
+    label: report.bb.bk_house_no
+    type: string
+    source: bb
+    total: false
+  - name: bk_father_name
+    label: report.bb.bk_father_name
+    type: string
+    source: bb
+    total: false
+  - name: bk_email
+    label: report.bb.bk_email
+    type: string
+    source: bb
+    total: false
+  - name: bk_cgst
+    label: report.bb.bk_cgst
+    type: string
+    source: bb
+    total: false    
   searchParams:
   - name: applicationNumber
     label: reports.bb.bk_application_number
@@ -420,13 +510,13 @@ ReportDefinitions:
     isMandatory: false
     searchClause: AND bb.bk_application_number >= $applicationNumber
   - name: fromDate
-    label: reports.bb.bk_date_created
+    label: reports.bb.bk_from_date
     type: epoch
     source: bb
     isMandatory: false
     searchClause: AND bb.bk_date_created >= to_date(to_char(to_timestamp($fromDate/1000)+ interval '5:30','YYYY-MM-DD'),'YYYY-MM-DD')
   - name: toDate
-    label: reports.bb.bk_date_created
+    label: reports.bb.bk_to_date
     type: epoch
     source: bb
     isMandatory: false
@@ -494,7 +584,25 @@ ReportDefinitions:
       eu.name as bookingMadeThrough,
       payment.totalamountpaid as bookingAmount,
       booking_status(concat('RPT_BK_WF_', bb.bk_application_status)) as status,
-      bb.bk_customer_gst_no as gst
+      bb.bk_customer_gst_no as gst,
+      bb.refundable_security_money,
+      bb.bk_nominee_name,
+      bb.discount,
+      bb.bk_ifsc_code,
+      bb.bk_bank_name,
+      bb.bk_bank_account_number,
+      bb.bk_bank_account_holder,
+      bb.bk_account_type,
+      bb.bk_utgst as ugst,
+      bb.bk_surcharge_rent,
+      bb.bk_residential_or_commercial,
+      bb.bk_remarks,
+      bb.bk_payment_status,
+      bb.bk_mobile_number,
+      bb.bk_house_no,
+      bb.bk_father_name,
+      bb.bk_email,
+      bb.bk_cgst
     FROM bk_bookings bb
     INNER JOIN  message msg ON  msg.code = bb.business_service AND msg.locale = 'en_IN'
     LEFT OUTER JOIN egcl_bill bill ON bill.consumercode = bb.bk_application_number 
@@ -581,13 +689,13 @@ ReportDefinitions:
     total: false      
   searchParams:
   - name: fromDate
-    label: reports.bb.bk_date_created
+    label: reports.bb.bk_from_date
     type: epoch
     source: bb
     isMandatory: false
     searchClause: AND bb.bk_date_created >= to_date(to_char(to_timestamp($fromDate/1000)+ interval '5:30','YYYY-MM-DD'),'YYYY-MM-DD')
   - name: toDate
-    label: reports.bb.bk_date_created
+    label: reports.bb.bk_to_date
     type: epoch
     source: bb
     isMandatory: false
@@ -646,11 +754,16 @@ ReportDefinitions:
       to_char(bb.bk_from_date, 'DD/MM/YYYY') as bookingStartDate,
       to_char(bb.bk_to_date, 'DD/MM/YYYY') as bookingEndDate,
       bb.bk_sector as sector,
-      bb.bk_application_number as applicationNumber,
-      booking_status(concat('RPT_BK_WF_', bb.bk_application_status)) as status,
+      bb.bk_booking_venue as venueName,
       bb.bk_applicant_name as applicantName,
-      payment.transactionnumber as transactionumber,
-      payment.totalamountpaid as bookingAmount
+      bb.bk_application_number as applicationNumber,
+      bb.bk_complete_address as address,
+      bb.bk_booking_purpose as bookingPurpose,
+      bb.bk_rent as rent,
+      eu.name as bookingMadeThrough,
+      payment.totalamountpaid as bookingAmount,
+      booking_status(concat('RPT_BK_WF_', bb.bk_application_status)) as status,
+      bb.bk_customer_gst_no as gst
     FROM bk_bookings bb
     INNER JOIN  message msg ON  msg.code = bb.business_service AND msg.locale = 'en_IN'
     LEFT OUTER JOIN egcl_bill bill ON bill.consumercode = bb.bk_application_number 
@@ -702,13 +815,13 @@ ReportDefinitions:
     total: false
   searchParams:
   - name: fromDate
-    label: reports.bcgal.created_date
+    label: reports.bcgal.bk_from_date
     type: epoch
     source: bcgal
     isMandatory: false
     searchClause: AND bcgal.created_date >= to_date(to_char(to_timestamp($fromDate/1000)+ interval '5:30','YYYY-MM-DD'),'YYYY-MM-DD')
   - name: toDate
-    label: reports.bcgal.created_date
+    label: reports.bcgal.bk_to_date
     type: epoch
     source: bcgal
     isMandatory: false
